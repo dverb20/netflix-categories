@@ -62,6 +62,25 @@ function restorePopupOptions (thisUserConfig) {
                 }
 
                 saveThisUserConfig();
+            } else if (thisEvent.target.classList.contains("btn-expand-this-item")) {
+                //console.log("Target: ");
+                let thisSearchID = thisEvent.target.getAttribute("search-id");
+                // console.log(thisEvent.target);
+                // console.log("Target Parents: ");
+                // console.log(thisEvent.target.parentNode.parentNode.parentNode)
+                let categoryListItem = thisEvent.target.parentNode.parentNode
+                //console.log(categoryListItem.getElementsByClassName("food-list")['length']);
+                if (categoryListItem.getElementsByClassName("food-list")['length'] == 0) {
+                  categoryListItem.appendChild(document.createRange().createContextualFragment(
+                    `<ul class="food-list">
+                      <li>Coffee</li>
+                      <li>Tea</li>
+                      <li>Milk</li>
+                    </ul>`
+                  ))
+                } else {
+                  categoryListItem.removeChild(categoryListItem.getElementsByClassName("food-list")[0])
+              }
             }
         }
     }
@@ -103,12 +122,12 @@ function restorePopupOptions (thisUserConfig) {
             let pinnedSearchNodeHtml = `
             <div id="featured-search-item-open-in-tab-block-${searchEngineItem.id}" class="main-pinned-item" search-id="${searchEngineItem.id}">
                 <a id="featured-search-item-open-in-tab-${searchEngineItem.id}" class="pinned-item-category-name" search-id="${searchEngineItem.id}" > ${searchEngineItem.name}
+                  <span class="pull-right">
+                    <i class="${searchEngineItem.pinned? "icon-heart": "icon-heart-empty"} btn-pin-this-item" search-id="${searchEngineItem.id}" id="search-item-pinned-toggle-${searchEngineItem.id}"
+                        title=${searchEngineItem.pinned? "Unfavorite": "Favorite"}></i>
+                    <i class="btn btn-sm btn-expand-this-item fa fa-arrow-down" search-id="${searchEngineItem.id}" id="main-item-menu" title="caption"></i>
+                  </span>
                 </a>
-                <span class="pull-right">
-                  <i class="${searchEngineItem.pinned? "icon-heart": "icon-heart-empty"} btn-pin-this-item" search-id="${searchEngineItem.id}" id="search-item-pinned-toggle-${searchEngineItem.id}"
-                      title=${searchEngineItem.pinned? "Unfavorite": "Favorite"}></i>
-                  <i id="main-item-menu" class="btn btn-sm fa arrow-down" title="caption"></i>
-                </span>
             </div>
             `;
 
