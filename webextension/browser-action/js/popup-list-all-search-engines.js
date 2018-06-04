@@ -48,6 +48,26 @@ function restoreListAllSearchEnginesPopupOptions (thisUserConfig) {
                 }, function () {
                 });
             }
+            else if (thisEvent.target.classList.contains("btn-expand-this-item")) {
+                //console.log("Target: ");
+                let thisSearchID = thisEvent.target.getAttribute("search-id");
+                // console.log(thisEvent.target);
+                // console.log("Target Parents: ");
+                // console.log(thisEvent.target.parentNode.parentNode.parentNode)
+                let categoryListItem = thisEvent.target.parentNode.parentNode.parentNode
+                //console.log(categoryListItem.getElementsByClassName("food-list")['length']);
+                if (categoryListItem.getElementsByClassName("food-list")['length'] == 0) {
+                  categoryListItem.appendChild(document.createRange().createContextualFragment(
+                    `<ul class="food-list">
+                      <li>Coffee</li>
+                      <li>Tea</li>
+                      <li>Milk</li>
+                    </ul>`
+                  ))
+                } else {
+                  categoryListItem.removeChild(categoryListItem.getElementsByClassName("food-list")[0])
+              }
+            }
         }
     }
 
@@ -55,14 +75,16 @@ function restoreListAllSearchEnginesPopupOptions (thisUserConfig) {
         let searchEngineListFrag = document.createDocumentFragment();
         searchEngineList.forEach(searchEngineItem => {
             searchEngineListFrag.appendChild(document.createRange().createContextualFragment(
-                `<a id="search-item-open-in-tab-${generateUuid()}" search-id="${searchEngineItem.id}" class="main-pinned-item">
+                `<div>
+                <a id="search-item-open-in-tab-${generateUuid()}" search-id="${searchEngineItem.id}" class="main-pinned-item">
                      ${searchEngineItem.name}
                      <span class="pull-right">
                          <i class="btn btn-sm ${searchEngineItem.pinned? "icon-heart": "icon-heart-empty"} btn-pin-this-item" search-id="${searchEngineItem.id}" id="search-item-pinned-toggle-${searchEngineItem.id}"
                              title=${searchEngineItem.pinned? "Unfavorite": "Favorite"}></i>
-                         <i id="main-item-menu" class="btn btn-sm fa fa-cloud" title="caption"></i>
+                         <i class="btn btn-sm btn-expand-this-item fa fa-arrow-down" search-id="${searchEngineItem.id}" id="main-item-menu" title="caption"></i>
                      </span>
-                 </a>`
+                 </a>
+                 </div>`
             ));
         });
         return searchEngineListFrag;
@@ -74,6 +96,10 @@ function restoreListAllSearchEnginesPopupOptions (thisUserConfig) {
     }
     accordionNode.appendChild(generateSearchEngineListNodes(thisUserConfig.getSearchEnginesByCategory("NetflixCategories")));
     document.getElementById("accordion").addEventListener("click", processSearchEngineButtonClick);
+
+    let categoryItem = document.getElementById("main-item-menu")
+
+
 
 }
 

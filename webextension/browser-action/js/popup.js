@@ -107,7 +107,7 @@ function restorePopupOptions (thisUserConfig) {
                 <span class="pull-right">
                   <i class="${searchEngineItem.pinned? "icon-heart": "icon-heart-empty"} btn-pin-this-item" search-id="${searchEngineItem.id}" id="search-item-pinned-toggle-${searchEngineItem.id}"
                       title=${searchEngineItem.pinned? "Unfavorite": "Favorite"}></i>
-                  <i id="main-item-menu" class="btn btn-sm fa fa-cloud" title="caption"></i>
+                  <i id="main-item-menu" class="btn btn-sm fa arrow-down" title="caption"></i>
                 </span>
             </div>
             `;
