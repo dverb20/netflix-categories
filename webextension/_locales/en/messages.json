@@ -1,6 +1,6 @@
 {
   "extName": {
-    "message":"Netflix Categories",
+    "message":"Surf Netflix",
     "description":"Extension name"
   },
   "extShortName": {
@@ -8,7 +8,7 @@
     "description":"Extension short name"
   },
   "extDescription": {
-    "message":"Explore Hidden Categories On Netflix",
+    "message":"Start a random movie at a random point given a category",
     "description":"Extension description"
   }
 }

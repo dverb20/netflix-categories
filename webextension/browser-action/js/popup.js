@@ -104,8 +104,11 @@ function restorePopupOptions (thisUserConfig) {
             <div id="featured-search-item-open-in-tab-block-${searchEngineItem.id}" class="main-pinned-item" search-id="${searchEngineItem.id}">
                 <a id="featured-search-item-open-in-tab-${searchEngineItem.id}" class="pinned-item-category-name" search-id="${searchEngineItem.id}" > ${searchEngineItem.name}
                 </a>
-                <i class="${searchEngineItem.pinned? "icon-heart": "icon-heart-empty"} btn-pin-this-item" search-id="${searchEngineItem.id}" id="search-item-pinned-toggle-${searchEngineItem.id}"
-                    title=${searchEngineItem.pinned? "Unfavorite": "Favorite"}></i>
+                <span class="pull-right">
+                  <i class="${searchEngineItem.pinned? "icon-heart": "icon-heart-empty"} btn-pin-this-item" search-id="${searchEngineItem.id}" id="search-item-pinned-toggle-${searchEngineItem.id}"
+                      title=${searchEngineItem.pinned? "Unfavorite": "Favorite"}></i>
+                  <i id="main-item-menu" class="btn btn-sm fa fa-cloud" title="caption"></i>
+                </span>
             </div>
             `;
 
